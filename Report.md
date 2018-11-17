@@ -20,7 +20,7 @@ For measuring the error of value functions, MSE was used, and soft-updates were 
 
 ## Exploration
 
-In the paper the authors used constant Gaussian noise injected into the model when selecting action to induce exploration, and I used samples from Gaussian model with mean 0 and standard deviation of 0.1 to. Varying values of noise were tried but the environment was solved without any problems regardless. 
+In the paper the authors used constant Gaussian noise injected into the model when selecting action to induce exploration, and I used samples from Gaussian model with mean 0 and standard deviation of 0.1. Varying values of noise were tried but the environment was solved without any problems regardless. 
 
 ## Hyperparameters
 
