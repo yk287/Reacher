@@ -4,9 +4,21 @@ import torch.nn.functional as F
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+'''
+Essentially Identical do DDPG except
+1) State and Action values go in the first layer of Critic
+'''
 class Actor(nn.Module):
 
     def __init__(self, state_size, action_size, hidden_layer=256, hidden_layer1=256, w_init=3e-3):
+        '''
+        Initialize the Actor
+        :param state_size:
+        :param action_size:
+        :param hidden_layer:
+        :param hidden_layer1:
+        :param w_init:
+        '''
         super(Actor, self).__init__()
 
         self.linear  = nn.Linear(state_size, hidden_layer).to(device)
@@ -33,6 +45,14 @@ class Actor(nn.Module):
 class Critic(nn.Module):
 
     def __init__(self, state_size, action_size, hidden_layer=256, hidden_layer1=256, w_init=3e-3):
+        '''
+        Initialize the Critic
+        :param state_size:
+        :param action_size:
+        :param hidden_layer:
+        :param hidden_layer1:
+        :param w_init:
+        '''
         super(Critic, self).__init__()
 
         self.linear     = nn.Linear(state_size + action_size, hidden_layer).to(device)

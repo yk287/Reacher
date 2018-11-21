@@ -45,6 +45,9 @@ for eps in range(num_episodes):
     while done == 0:
 
         if eps % 100 == 0:
+            '''For every 100 episodes we perform the task without any noise
+            The authors talk about doing this during training to gauge how well
+            the agent has learned to solve the environment. Although running 1 episode might not be enough'''
             action = policy.act(state, False)
             action = np.clip(action, -1, 1)
         else:
@@ -61,9 +64,13 @@ for eps in range(num_episodes):
         step += 1
 
         if eps % 100 != 0:
+            '''
+            Chose not to use the data from the episode without any noise. 
+            
+            '''
             policy.add_to_memory(state, action, reward, next_state, done)
             if policy.memory.__len__() > batch_size:
-                policy.update(step)
+                policy.update(step) #passes in steps so the actor knows when to update.
 
         state = next_state
 
